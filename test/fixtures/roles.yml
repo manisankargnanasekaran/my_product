@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role_name: MyString
+  role_code: MyString
+  active_role: false
+  delete_at: 
+  role_key: MyString
+  tenant: one
+
+two:
+  role_name: MyString
+  role_code: MyString
+  active_role: false
+  delete_at: 
+  role_key: MyString
+  tenant: two
