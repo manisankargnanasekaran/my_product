@@ -12,6 +12,7 @@ class SessionController < ApplicationController
   end
 
   def login
+    
     authenticate params[:email], params[:password]
   end
   
@@ -36,6 +37,7 @@ class SessionController < ApplicationController
    def authenticate(email, password)
     command = AuthenticateUser.call(email, password)
     if command.success?
+      byebug
       user_id = JsonWebToken.decode(command.result)["user_id"]
       #UserAuthLog.create(auth_token: command.result, user_id: user_id)
       render json: {

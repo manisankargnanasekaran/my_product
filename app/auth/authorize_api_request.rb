@@ -15,9 +15,10 @@ class AuthorizeApiRequest
 
   attr_reader :headers
 
-  def user
-    @user ||= LoginDetail.find(decoded_auth_token[:login_detail_id]) if decoded_auth_token
-    @user || errors.add(:token, 'Invalid token') && nil
+  def login_detail
+
+    @login_detail ||= LoginDetail.find(decoded_auth_token[:id]) if decoded_auth_token
+    @login_detail || errors.add(:token, 'Invalid token') && nil
   end
 
   def decoded_auth_token

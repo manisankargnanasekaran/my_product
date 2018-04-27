@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  auth_token: MyString
+  deleted_at: 2018-04-26 23:48:25
+  is_active: false
+  tenant: one
+
+two:
+  auth_token: MyString
+  deleted_at: 2018-04-26 23:48:25
+  is_active: false
+  tenant: two

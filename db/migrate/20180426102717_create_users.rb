@@ -12,6 +12,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.references :address, foreign_key: true
       t.references :role, foreign_key: true
       t.references :tenant, foreign_key: true
+      t.references :login_detail, foreign_key: true
+      t.references :social_network, foreign_key: true
 
       t.timestamps
     end
