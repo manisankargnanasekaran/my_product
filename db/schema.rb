@@ -28,10 +28,8 @@ ActiveRecord::Schema.define(version: 20180426181825) do
     t.string "auth_token"
     t.datetime "deleted_at"
     t.boolean "is_active", default: true
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_auth_logs_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -105,10 +103,9 @@ ActiveRecord::Schema.define(version: 20180426181825) do
     t.string "user_key"
     t.integer "contact_id"
     t.integer "address_id"
-    t.integer "role_id"
-    t.integer "tenant_id"
-    t.integer "login_detail_id"
     t.integer "social_network_id"
+    t.integer "role_id"
+    t.integer "login_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_users_on_address_id"
@@ -116,7 +113,6 @@ ActiveRecord::Schema.define(version: 20180426181825) do
     t.index ["login_detail_id"], name: "index_users_on_login_detail_id"
     t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["social_network_id"], name: "index_users_on_social_network_id"
-    t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
 
 end

@@ -6,7 +6,7 @@ class CreateLoginDetails < ActiveRecord::Migration[5.1]
       t.string :is_active, default: :true
       t.datetime :deleted_at
       t.integer :login_role
-      t.references :tenant, foreign_key: true
+      t.belongs_to :tenant, foreign_key: true
 
       t.timestamps
     end

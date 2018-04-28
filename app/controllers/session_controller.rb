@@ -12,12 +12,11 @@ class SessionController < ApplicationController
   end
 
   def login
-    
     authenticate params[:email], params[:password]
   end
   
   def test
-    #byebug
+    byebug
     render json: {
           message: 'You have passed authentication and authorization test'
         }
@@ -37,9 +36,10 @@ class SessionController < ApplicationController
    def authenticate(email, password)
     command = AuthenticateUser.call(email, password)
     if command.success?
-      byebug
+      #byebug
       user_id = JsonWebToken.decode(command.result)["user_id"]
       #UserAuthLog.create(auth_token: command.result, user_id: user_id)
+      byebug
       render json: {
         access_token: command.result,
         message: 'Login Successful'

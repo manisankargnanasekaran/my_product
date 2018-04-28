@@ -6,7 +6,8 @@ class CreateRoles < ActiveRecord::Migration[5.1]
       t.boolean :active_role, default: :true
       t.datetime :delete_at
       t.string :role_key
-      t.references :tenant, foreign_key: true
+      t.belongs_to :tenant, foreign_key: true
+
  
       t.timestamps
     end

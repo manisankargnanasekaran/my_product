@@ -8,12 +8,12 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :deleted_at
       t.string :user_name
       t.string :user_key
-      t.references :contact, foreign_key: true
-      t.references :address, foreign_key: true
-      t.references :role, foreign_key: true
-      t.references :tenant, foreign_key: true
-      t.references :login_detail, foreign_key: true
-      t.references :social_network, foreign_key: true
+      t.belongs_to :contact, foreign_key: true
+      t.belongs_to :address, foreign_key: true
+      t.belongs_to :social_network, foreign_key: true
+      t.belongs_to :role, foreign_key: true
+      t.belongs_to :login_detail, foreign_key: true
+      
 
       t.timestamps
     end
