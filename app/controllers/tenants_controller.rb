@@ -16,8 +16,7 @@ class TenantsController < ApplicationController
   # POST /tenants
   def create
     @tenant = Tenant.new(tenant_params)
-
-    if @tenant.save
+    if @tenant.save!
       @tenant.roles.first.users.first.login_detail.update(tenant_id: @tenant.id)
       render json: @tenant, status: :created, location: @tenant
     else

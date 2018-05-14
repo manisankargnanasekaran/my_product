@@ -16,7 +16,6 @@ class SessionController < ApplicationController
   end
   
   def test
-    byebug
     render json: {
           message: 'You have passed authentication and authorization test'
         }
@@ -24,7 +23,7 @@ class SessionController < ApplicationController
  
   def logout
         token = request.headers["Authorization"].split(' ').last
-        UserAuthLog.find_by(auth_token: token).update(auth_token: "")
+        AuthLog.find_by(auth_token: token).update(auth_token: "")
         render json: {status: :success, message: "Logout successfully"}
   end
   private
@@ -36,13 +35,15 @@ class SessionController < ApplicationController
    def authenticate(email, password)
     command = AuthenticateUser.call(email, password)
     if command.success?
-      #byebug
-      user_id = JsonWebToken.decode(command.result)["user_id"]
-      #UserAuthLog.create(auth_token: command.result, user_id: user_id)
-      byebug
+      user_id = JsonWebToken.decode(command.result)["id"]
+      user = LoginDetail.find(user_id).user.id
+      tenant  = LoginDetail.find(user_id).tenant
+      AuthLog.create(auth_token: command.result, user_id: user)
       render json: {
         access_token: command.result,
-        message: 'Login Successful'
+        message: 'Login Successful',
+        id: tenant.id,
+        tenant: tenant
       }
     else
       render json: { error: command.errors }, status: :unauthorized
